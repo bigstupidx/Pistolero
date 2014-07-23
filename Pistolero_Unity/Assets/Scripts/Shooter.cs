@@ -2,14 +2,15 @@
 using System.Collections;
 
 public class Shooter : MonoBehaviour {
+	public Gun currentGun;
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetMouseButtonDown(0)) currentGun.Fire();
 	}
 }
