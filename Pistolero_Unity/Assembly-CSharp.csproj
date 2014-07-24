@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_5_1;UNITY_4_5;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_0;UNITY_4_5;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,10 +46,75 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GoKit\Go.cs" />
+     <Compile Include="Assets\GoKit\GoDummyPath.cs" />
+     <Compile Include="Assets\GoKit\GoTween.cs" />
+     <Compile Include="Assets\GoKit\GoTweenChain.cs" />
+     <Compile Include="Assets\GoKit\GoTweenCollectionConfig.cs" />
+     <Compile Include="Assets\GoKit\GoTweenConfig.cs" />
+     <Compile Include="Assets\GoKit\GoTweenFlow.cs" />
+     <Compile Include="Assets\GoKit\base\AbstractGoTween.cs" />
+     <Compile Include="Assets\GoKit\base\AbstractGoTweenCollection.cs" />
+     <Compile Include="Assets\GoKit\easing\GoEaseBack.cs" />
+     <Compile Include="Assets\GoKit\easing\GoEaseBounce.cs" />
+     <Compile Include="Assets\GoKit\easing\GoEaseCircular.cs" />
+     <Compile Include="Assets\GoKit\easing\GoEaseCubic.cs" />
+     <Compile Include="Assets\GoKit\easing\GoEaseElastic.cs" />
+     <Compile Include="Assets\GoKit\easing\GoEaseExponential.cs" />
+     <Compile Include="Assets\GoKit\easing\GoEaseLinear.cs" />
+     <Compile Include="Assets\GoKit\easing\GoEaseQuadratic.cs" />
+     <Compile Include="Assets\GoKit\easing\GoEaseQuartic.cs" />
+     <Compile Include="Assets\GoKit\easing\GoEaseQuintic.cs" />
+     <Compile Include="Assets\GoKit\easing\GoEaseSinusoidal.cs" />
+     <Compile Include="Assets\GoKit\enums\GoDuplicatePropertyRuleType.cs" />
+     <Compile Include="Assets\GoKit\enums\GoEaseType.cs" />
+     <Compile Include="Assets\GoKit\enums\GoLogLevel.cs" />
+     <Compile Include="Assets\GoKit\enums\GoLookAtType.cs" />
+     <Compile Include="Assets\GoKit\enums\GoLoopType.cs" />
+     <Compile Include="Assets\GoKit\enums\GoShakeType.cs" />
+     <Compile Include="Assets\GoKit\enums\GoSplineType.cs" />
+     <Compile Include="Assets\GoKit\enums\GoTweenState.cs" />
+     <Compile Include="Assets\GoKit\enums\GoUpdateType.cs" />
+     <Compile Include="Assets\GoKit\extensions\GoKitTweenExtensions.cs" />
+     <Compile Include="Assets\GoKit\properties\GoTweenUtils.cs" />
+     <Compile Include="Assets\GoKit\properties\abstracts\AbstractColorTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\abstracts\AbstractQuaternionTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\abstracts\AbstractTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\abstracts\AbstractVector3TweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\genericTypes\ColorTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\genericTypes\FloatTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\genericTypes\IGenericProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\genericTypes\IntTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\genericTypes\Vector2TweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\genericTypes\Vector3PathTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\genericTypes\Vector3TweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\genericTypes\Vector3XTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\genericTypes\Vector3YTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\genericTypes\Vector3ZTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\genericTypes\Vector4TweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\smoothing\GoSmoothedQuaternion.cs" />
+     <Compile Include="Assets\GoKit\properties\smoothing\GoSmoothedVector3.cs" />
+     <Compile Include="Assets\GoKit\properties\smoothing\GoSmoothingType.cs" />
+     <Compile Include="Assets\GoKit\properties\specificTypes\EulerAnglesTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\specificTypes\MaterialColorTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\specificTypes\PositionPathTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\specificTypes\PositionTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\specificTypes\RotationQuaternionTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\specificTypes\RotationTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\specificTypes\ScalePathTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\specificTypes\ScaleTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\specificTypes\ShakeTweenProperty.cs" />
+     <Compile Include="Assets\GoKit\properties\splines\AbstractGoSplineSolver.cs" />
+     <Compile Include="Assets\GoKit\properties\splines\GoSpline.cs" />
+     <Compile Include="Assets\GoKit\properties\splines\GoSplineCatmullRomSolver.cs" />
+     <Compile Include="Assets\GoKit\properties\splines\GoSplineCubicBezierSolver.cs" />
+     <Compile Include="Assets\GoKit\properties\splines\GoSplineQuadraticBezierSolver.cs" />
+     <Compile Include="Assets\GoKit\properties\splines\GoSplineStraightLineSolver.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
-     <Compile Include="Assets\Scripts\DamageReciever.cs" />
+     <Compile Include="Assets\Scripts\DamageableBody.cs" />
      <Compile Include="Assets\Scripts\Gun.cs" />
-     <Compile Include="Assets\Scripts\Shooter.cs" />
+     <Compile Include="Assets\Scripts\Shield.cs" />
+     <Compile Include="Assets\Scripts\ShooterPlayerController.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCamera.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCameraAnchor.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCameraUtil.cs" />
@@ -138,6 +203,7 @@
      <None Include="Assets\TK2DROOT\tk2d\Shaders\PremulVertexColor.shader" />
      <None Include="Assets\TK2DROOT\tk2d_demo\Credits.txt" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\goodies\PackedTextMesh.shader" />
+     <None Include="Assets\GoKit\easing\easeEquationsLicense.txt" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\Blend2TexVertexColor.shader" />
      <None Include="Assets\TK2DROOT\tk2dUI\Shaders\DepthMaskSolid.shader" />
      <None Include="Assets\TK2DROOT\tk2dUI_demo\Assets\Dark\Fonts\Nunito24.fnt" />

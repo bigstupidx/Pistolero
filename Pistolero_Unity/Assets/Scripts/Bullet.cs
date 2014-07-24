@@ -4,6 +4,8 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 	public float damage = 50;
 
+	[HideInInspector] public Transform rootTransformOfOrigin;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -15,9 +17,17 @@ public class Bullet : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider coll) {
-		DamageReciever damageReciever = coll.GetComponent<DamageReciever>();
+		// don't collide with the person who shot the bullet
+		if (coll.transform.root == rootTransformOfOrigin) return;
 
-		if (damageReciever != null) {
+		DamageableBody damageableBody = coll.GetComponent<DamageableBody>();
+		Shield shield = coll.GetComponent<Shield>();
+
+		if (damageableBody) {
+			Kill();
+		}
+
+		if (shield && shield.isRaised) {
 			Kill();
 		}
 	}
