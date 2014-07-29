@@ -2,7 +2,16 @@
 using System.Collections;
 
 public class DamageableBody : MonoBehaviour {
-	public Shield shield;
+	public Shield shield {
+		get {
+			if (!_shield) {
+				_shield = GetComponentInChildren<Shield>();
+			}
+			return _shield;
+		}
+	}
+
+	private Shield _shield = null;
 
 	// Use this for initialization
 	void Start () {

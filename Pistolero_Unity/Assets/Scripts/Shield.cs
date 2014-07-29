@@ -2,10 +2,11 @@
 using System.Collections;
 
 public class Shield : MonoBehaviour {
-	public Transform transformRaised;
-	public Transform transformLowered;
 	public float damageMultiplier = 0.3f;
 	public bool isRaised {get; private set;}
+
+	public Transform transformRaised;
+	public Transform transformLowered;
 
 	private DamageableBody damageableBody;
 
@@ -20,28 +21,36 @@ public class Shield : MonoBehaviour {
 	
 	}
 
-	public void Raise() {
-		if (isRaised) Debug.LogWarning("raising shield when already raised!");
-
+	public void Raise(float time = 0) {
 		isRaised = true;
 
 		Go.killAllTweensWithTarget(transform);
 
 		transform.parent = transformRaised;
 
-		Go.to(transform, 0.1f, new GoTweenConfig().localPosition(Vector3.zero).localRotation(Quaternion.identity));
+		if (time == 0) {
+			transform.localPosition = Vector3.zero;
+			transform.localRotation = Quaternion.identity;
+		}
+		else {
+			Go.to(transform, time, new GoTweenConfig().localPosition(Vector3.zero).localRotation(Quaternion.identity));
+		}
 	}
 
-	public void Lower() {
-		if (!isRaised) Debug.LogWarning("lowering shield when already lowered!");
-
+	public void Lower(float time = 0) {
 		isRaised = false;
 
 		Go.killAllTweensWithTarget(transform);
-		
+
 		transform.parent = transformLowered;
-		
-		Go.to(transform, 0.1f, new GoTweenConfig().localPosition(Vector3.zero).localRotation(Quaternion.identity));
+
+		if (time == 0) {
+			transform.localPosition = Vector3.zero;
+			transform.localRotation = Quaternion.identity;
+		}
+		else {
+			Go.to(transform, time, new GoTweenConfig().localPosition(Vector3.zero).localRotation(Quaternion.identity));
+		}
 	}
 
 	void OnTriggerEnter(Collider coll) {

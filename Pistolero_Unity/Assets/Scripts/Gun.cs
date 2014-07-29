@@ -31,7 +31,7 @@ public class Gun : MonoBehaviour {
 		timeOfLastFire = Time.time;
 	}
 
-	public bool CanFire() {
+	public bool EnoughTimeHasLapsedForNextFire() {
 		return Time.time - timeOfLastFire > fireRate;
 	}
 }

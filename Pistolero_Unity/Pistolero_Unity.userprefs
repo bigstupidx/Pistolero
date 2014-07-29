@@ -1,12 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DamageableBody.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Shooter.cs">
     <Files>
-      <File FileName="Assets/Scripts/Gun.cs" Line="25" Column="22" />
-      <File FileName="Assets/Scripts/ShooterPlayerController.cs" Line="7" Column="1" />
-      <File FileName="Assets/Scripts/DamageableBody.cs" Line="24" Column="17" />
+      <File FileName="Assets/Scripts/Pistolero.cs" Line="9" Column="26" />
+      <File FileName="Assets/Scripts/Shooter.cs" Line="13" Column="18" />
       <File FileName="Assets/Scripts/Shield.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Bullet.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DamageableBody.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Gun.cs" Line="1" Column="1" />
+      <File FileName="Assets/Editor/DebugManagerEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DebugManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
