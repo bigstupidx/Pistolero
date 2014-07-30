@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(DamageableBody))]
 public class Shooter : MonoBehaviour {
 	public Transform shieldTransformRaised;
 	public Transform shieldTransformLowered;
@@ -12,9 +11,6 @@ public class Shooter : MonoBehaviour {
 	// might be connected and disconnected throughout the game
 	public Gun gun {get {return _gun;}}
 	public Shield shield {get {return _shield;}}
-	
-	// connected from the beginning
-	public DamageableBody damageableBody {get; private set;}
 
 	[SerializeField]
 	private Gun _gun;
@@ -22,7 +18,6 @@ public class Shooter : MonoBehaviour {
 	private Shield _shield;
 
 	void Awake () {
-		damageableBody = GetComponent<DamageableBody>();
 		isReloading = false;
 	}
 

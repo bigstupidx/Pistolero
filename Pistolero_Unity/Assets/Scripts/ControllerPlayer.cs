@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Pistolero : MonoBehaviour {
+public class ControllerPlayer : MonoBehaviour {
 	public Shooter shooter;
 
 	// Use this for initialization

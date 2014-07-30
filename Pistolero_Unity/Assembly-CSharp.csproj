@@ -111,11 +111,15 @@
      <Compile Include="Assets\GoKit\properties\splines\GoSplineQuadraticBezierSolver.cs" />
      <Compile Include="Assets\GoKit\properties\splines\GoSplineStraightLineSolver.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
-     <Compile Include="Assets\Scripts\DamageableBody.cs" />
+     <Compile Include="Assets\Scripts\ControllerEnemy.cs" />
+     <Compile Include="Assets\Scripts\ControllerPlayer.cs" />
+     <Compile Include="Assets\Scripts\Death.cs" />
+     <Compile Include="Assets\Scripts\DeathEnemy.cs" />
+     <Compile Include="Assets\Scripts\DeathPlayer.cs" />
      <Compile Include="Assets\Scripts\DebugManager.cs" />
      <Compile Include="Assets\Scripts\Gun.cs" />
+     <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\Helper.cs" />
-     <Compile Include="Assets\Scripts\Pistolero.cs" />
      <Compile Include="Assets\Scripts\Shield.cs" />
      <Compile Include="Assets\Scripts\Shooter.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCamera.cs" />

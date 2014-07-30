@@ -1,17 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Bullet.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ControllerEnemy.cs">
     <Files>
-      <File FileName="Assets/Scripts/Pistolero.cs" Line="10" Column="2" />
-      <File FileName="Assets/Scripts/Shooter.cs" Line="34" Column="37" />
+      <File FileName="Assets/Scripts/ControllerPlayer.cs" Line="6" Column="2" />
+      <File FileName="Assets/Scripts/Shooter.cs" Line="63" Column="81" />
       <File FileName="Assets/Scripts/Shield.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DamageableBody.cs" Line="32" Column="18" />
+      <File FileName="Assets/Scripts/Health.cs" Line="43" Column="9" />
       <File FileName="Assets/Scripts/Gun.cs" Line="1" Column="1" />
-      <File FileName="Assets/Editor/DebugManagerEditor.cs" Line="64" Column="20" />
-      <File FileName="Assets/TK2DROOT/tk2d/Editor/Camera/tk2dCameraEditor.cs" Line="358" Column="19" />
-      <File FileName="Assets/TK2DROOT/tk2d/Code/Camera/tk2dCamera.cs" Line="17" Column="10" />
-      <File FileName="Assets/Scripts/DebugManager.cs" Line="4" Column="1" />
-      <File FileName="Assets/Scripts/Bullet.cs" Line="6" Column="2" />
+      <File FileName="Assets/Editor/DebugManagerEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets/TK2DROOT/tk2d/Editor/Camera/tk2dCameraEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets/TK2DROOT/tk2d/Code/Camera/tk2dCamera.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DebugManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Bullet.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Helper.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DeathPlayer.cs" Line="12" Column="2" />
+      <File FileName="Assets/Scripts/Death.cs" Line="17" Column="3" />
+      <File FileName="Assets/Scripts/DeathEnemy.cs" Line="5" Column="2" />
+      <File FileName="Assets/Scripts/ControllerEnemy.cs" Line="38" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

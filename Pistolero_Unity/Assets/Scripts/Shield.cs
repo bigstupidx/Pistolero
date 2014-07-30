@@ -8,12 +8,12 @@ public class Shield : MonoBehaviour {
 	public Transform transformRaised;
 	public Transform transformLowered;
 
-	private DamageableBody damageableBody;
+	private Health damageableBody;
 
 	// Use this for initialization
 	void Start () {
 		isRaised = false;
-		damageableBody = GetComponentInParent<DamageableBody>();
+		damageableBody = GetComponentInParent<Health>();
 	}
 	
 	// Update is called once per frame
@@ -22,6 +22,8 @@ public class Shield : MonoBehaviour {
 	}
 
 	public void Raise(float time = 0) {
+		if (isRaised) Debug.LogWarning("trying to raise shield while already raised");
+
 		isRaised = true;
 
 		Go.killAllTweensWithTarget(transform);
@@ -38,6 +40,8 @@ public class Shield : MonoBehaviour {
 	}
 
 	public void Lower(float time = 0) {
+		if (!isRaised) Debug.LogWarning("trying to lower shield while already lowered");
+
 		isRaised = false;
 
 		Go.killAllTweensWithTarget(transform);

@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class DamageableBody : MonoBehaviour {
+public class Health : MonoBehaviour {
+	public float hp = 500;
+
 	public Shield shield {
 		get {
 			if (!_shield) {
@@ -12,10 +15,11 @@ public class DamageableBody : MonoBehaviour {
 	}
 
 	private Shield _shield = null;
+	private Death death;
 
 	// Use this for initialization
 	void Start () {
-
+		death = GetComponent<Death>();
 	}
 	
 	// Update is called once per frame
@@ -34,6 +38,9 @@ public class DamageableBody : MonoBehaviour {
 	}
 
 	public void Damage(float damageAmount) {
-		//Debug.Log(damageAmount + " damage!");
+		hp = Mathf.Max(0, hp - damageAmount);
+		if (hp <= 0) {
+			if (!death.isDead) death.Die();
+		}
 	}
 }

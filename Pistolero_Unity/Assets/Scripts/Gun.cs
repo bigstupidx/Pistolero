@@ -13,12 +13,12 @@ public class Gun : MonoBehaviour {
 	public float rotationSpeed = 500;
 	public float spreadAngle = 0;
 
-	[HideInInspector] public int bulletsLeft;
+	public int bulletsLeft;
 
 	private float timeOfLastFire = 0;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		bulletsLeft = bulletCount;
 	}
 	
