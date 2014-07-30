@@ -8,12 +8,12 @@ public class Shield : MonoBehaviour {
 	public Transform transformRaised;
 	public Transform transformLowered;
 
-	private Health damageableBody;
+	private Health health;
 
 	// Use this for initialization
 	void Start () {
 		isRaised = false;
-		damageableBody = GetComponentInParent<Health>();
+		health = GetComponentInParent<Health>();
 	}
 	
 	// Update is called once per frame
@@ -21,8 +21,8 @@ public class Shield : MonoBehaviour {
 	
 	}
 
-	public void Raise(float time = 0) {
-		if (isRaised) Debug.LogWarning("trying to raise shield while already raised");
+	public void MoveToRaisedPosition(float time = 0.1f) {
+		if (isRaised && time != 0) Debug.LogWarning("trying to raise shield while already raised");
 
 		isRaised = true;
 
@@ -39,8 +39,8 @@ public class Shield : MonoBehaviour {
 		}
 	}
 
-	public void Lower(float time = 0) {
-		if (!isRaised) Debug.LogWarning("trying to lower shield while already lowered");
+	public void MoveToLoweredPosition(float time = 0.1f) {
+		if (!isRaised && time != 0) Debug.LogWarning("trying to lower shield while already lowered");
 
 		isRaised = false;
 
@@ -57,15 +57,15 @@ public class Shield : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider coll) {
-		Bullet bullet = coll.GetComponent<Bullet>();
-
-		if (bullet) {
-			// don't collide with the person who shot the bullet
-			if (bullet.rootTransformOfOrigin == transform.root) return;
-
-			// if it's not raised, the bullet shouldn't hit the shield at all
-			if (isRaised) damageableBody.Damage(bullet.damage * damageMultiplier);
-		}
-	}
+//	void OnTriggerEnter(Collider coll) {
+//		Bullet bullet = coll.GetComponent<Bullet>();
+//
+//		if (bullet) {
+//			// don't collide with the person who shot the bullet
+//			if (bullet.rootTransformOfOrigin == transform.root) return;
+//
+//			// if it's not raised, the bullet shouldn't hit the shield at all
+//			if (isRaised) health.Damage(bullet.damage * damageMultiplier);
+//		}
+//	}
 }

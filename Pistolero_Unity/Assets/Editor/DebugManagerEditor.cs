@@ -33,19 +33,20 @@ public class DebugManagerEditor : Editor {
 
 		var debugManager = target as DebugManager;
 
-		Shooter[] shooters = new Shooter[] {
-			debugManager.pistolero.GetComponentInChildren<Shooter>(),
-			debugManager.badGuy.GetComponentInChildren<Shooter>()
-		};
+//		Shooter[] shooters = new Shooter[] {
+//			debugManager.pistolero.GetComponentInChildren<Shooter>(),
+//			debugManager.badGuy.GetComponentInChildren<Shooter>()
+//		};
 
-		for (int i = 0; i < 2; i++) {
-			Shooter s = shooters[i];
+		//for (int i = 0; i < 2; i++) {
+			//Shooter s = shooters[i];
+			Shooter s = debugManager.pistolero.GetComponentInChildren<Shooter>();
 
-			if (i == 0) EditorGUILayout.LabelField("Pistolero");
-			else {
-				EditorGUILayout.Separator();
-				EditorGUILayout.LabelField("Bad Guy");
-			}
+//			if (i == 0) EditorGUILayout.LabelField("Pistolero");
+//			else {
+//				EditorGUILayout.Separator();
+//				EditorGUILayout.LabelField("Bad Guy");
+//			}
 
 			if (s.gun == null) {
 				foreach (Gun gun in gunPrefabs) {
@@ -78,6 +79,6 @@ public class DebugManagerEditor : Editor {
 			}
 
 			EditorUtility.SetDirty(s);
-		}
+		//}
 	}
 }

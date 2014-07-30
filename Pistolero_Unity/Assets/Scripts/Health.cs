@@ -27,15 +27,15 @@ public class Health : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter(Collider coll) {
-		Bullet bullet = coll.GetComponent<Bullet>();
-
-		if (bullet) {
-			// if the shield is raised, the bullets shouldn't hit the body directly at all,
-			// but this will double check that to make sure only the shield handles the damage
-			if (!shield || !shield.isRaised) Damage(bullet.damage);
-		}
-	}
+//	void OnTriggerEnter(Collider coll) {
+//		Bullet bullet = coll.GetComponent<Bullet>();
+//
+//		if (bullet) {
+//			// if the shield is raised, the bullets shouldn't hit the body directly at all,
+//			// but this will double check that to make sure only the shield handles the damage
+//			if (!shield.isRaised) Damage(bullet.damage);
+//		}
+//	}
 
 	public void Damage(float damageAmount) {
 		hp = Mathf.Max(0, hp - damageAmount);

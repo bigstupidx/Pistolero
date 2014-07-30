@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour {
 	public Transform bulletOrigin;
 	public bool isAutomatic = false;
 	public int bulletCount = 6;
-	public float reloadTime = 0.1f;
+	public float reloadTimePerBullet = 0.1f;
 	public float fireRate = 0.2f;
 	public float fireForce = 100;
 	public float fireForceVariation = 0;
@@ -32,6 +32,7 @@ public class Gun : MonoBehaviour {
 
 		Bullet newBullet = (Bullet)Instantiate(bulletPrefab, bulletOrigin.position, transform.rotation);
 		newBullet.rootTransformOfOrigin = transform.root;
+		Debug.Log(newBullet.rootTransformOfOrigin.name);
 		Vector3 bulletDirection = Quaternion.Euler(0, 0, Random.Range(-spreadAngle / 2f, spreadAngle / 2f)) * transform.right;
 		float fireSpeedVariation = Random.Range(0, fireForceVariation);
 		newBullet.rigidbody.AddForce(bulletDirection * (fireForce + fireSpeedVariation));

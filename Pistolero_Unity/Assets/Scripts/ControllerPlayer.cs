@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class ControllerPlayer : MonoBehaviour {
-	public Shooter shooter;
-
+	private Shooter shooter;
+	
 	// Use this for initialization
 	void Start () {
-
+		shooter = GetComponentInChildren<Shooter>();
 	}
 	
 	// Update is called once per frame
@@ -14,7 +14,7 @@ public class ControllerPlayer : MonoBehaviour {
 		if (shooter.shield && shooter.gun) {
 			if (Input.GetMouseButtonDown(0)) {
 				if (shooter.CanFire()) shooter.Fire();
-				else if (shooter.CanReload()) StartCoroutine(shooter.Reload());
+				else if (shooter.CanReload()) shooter.Reload();
 			}
 			else if (Input.GetMouseButton(0)) {
 				if (shooter.gun.isAutomatic && shooter.CanFire()) shooter.Fire();
@@ -24,8 +24,8 @@ public class ControllerPlayer : MonoBehaviour {
 			}
 
 			if (Input.GetKeyDown(KeyCode.S)) {
-				if (shooter.shield.isRaised) shooter.shield.Lower(0.1f);
-				else shooter.shield.Raise(0.1f);
+				if (shooter.shield.isRaised) shooter.LowerShield();
+				else shooter.RaiseShield();
 			}
 		}
 	}

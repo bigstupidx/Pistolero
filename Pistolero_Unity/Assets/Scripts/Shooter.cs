@@ -38,7 +38,7 @@ public class Shooter : MonoBehaviour {
 		_shield = newShield;
 		_shield.transformLowered = shieldTransformLowered;
 		_shield.transformRaised = shieldTransformRaised;
-		_shield.Lower();
+		_shield.MoveToLoweredPosition(0);
 	}
 	
 	public void RemoveGun() {
@@ -59,19 +59,43 @@ public class Shooter : MonoBehaviour {
 		_shield = null;
 	}
 
-	public IEnumerator Reload() {
-		if (isReloading) Debug.LogWarning("trying to reload while already reloading");
-
+	IEnumerator ReloadCoroutine() {
 		isReloading = true;
 
-		yield return new WaitForSeconds(gun.reloadTime);
+		shield.MoveToLoweredPosition();
+
+		while (gun.bulletsLeft < gun.bulletCount) {
+			yield return new WaitForSeconds(gun.reloadTimePerBullet);
+
+			gun.bulletsLeft++;
+		}
 		
-		gun.bulletsLeft = gun.bulletCount;
 		isReloading = false;
-		Debug.Log("reloaded");
+	}
+
+	public void RaiseShield() {
+		if (isReloading) CancelReload();
+		shield.MoveToRaisedPosition();
+	}
+
+	public void LowerShield() {
+		shield.MoveToLoweredPosition();
+	}
+
+	public void Reload() {
+		if (isReloading) Debug.LogWarning("trying to reload while already reloading");
+
+		StartCoroutine("ReloadCoroutine");
+	}
+
+	public void CancelReload() {
+		StopCoroutine("ReloadCoroutine");
+
+		isReloading = false;
 	}
 
 	public void Fire() {
+		if (isReloading) CancelReload();
 		gun.FireBullet();
 	}
 

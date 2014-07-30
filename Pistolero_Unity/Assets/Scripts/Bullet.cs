@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Bullet : MonoBehaviour {
@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 pos = transform.position;
-		Rect r = Helper.instance.GetScreenRectInWorldSpace();
+		Rect r = CameraHelper.instance.GetScreenRectInWorldSpace();
 
 		if (pos.x < r.xMin ||
 		    pos.x > r.xMax ||
@@ -29,10 +29,22 @@ public class Bullet : MonoBehaviour {
 		// don't collide with the person who shot the bullet
 		if (coll.transform.root == rootTransformOfOrigin) return;
 
-		Kill();
-//		Shooter hitShooter = coll.GetComponentInChildren<Shooter>();
-//	
-//		if (hitShooter) Kill();
+		Shield shield = coll.GetComponent<Shield>();
+		Entity entity = coll.transform.root.GetComponent<Entity>();
+
+		if (entity) {
+			if (entity.shield.isRaised) {
+				entity.health.Damage(damage * entity.shield.damageMultiplier);
+			//	Debug.Log("shield up: " + entity.name);
+			}
+			else {
+				entity.health.Damage(damage);
+				//Debug.Log("shield down: " + entity.name);
+
+			}
+
+			Kill();
+		}
 	}
 
 	void Kill() {

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Helper : MonoBehaviour {
-	public static Helper instance;
+public class CameraHelper : MonoBehaviour {
+	public static CameraHelper instance;
 
 	public tk2dCamera gameCam;
 	public tk2dCameraAnchor gameCamAnchorLowerLeft;
