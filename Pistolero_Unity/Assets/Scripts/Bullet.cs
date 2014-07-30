@@ -29,21 +29,18 @@ public class Bullet : MonoBehaviour {
 		// don't collide with the person who shot the bullet
 		if (coll.transform.root == rootTransformOfOrigin) return;
 
-		Shield shield = coll.GetComponent<Shield>();
-		Entity entity = coll.transform.root.GetComponent<Entity>();
+		Entity entity = coll.transform.root.GetComponentInChildren<Entity>();
 
 		if (entity) {
 			if (entity.shield.isRaised) {
 				entity.health.Damage(damage * entity.shield.damageMultiplier);
-			//	Debug.Log("shield up: " + entity.name);
 			}
 			else {
 				entity.health.Damage(damage);
-				//Debug.Log("shield down: " + entity.name);
-
 			}
 
 			Kill();
+			//Debug.Log("kill " + rootTransformOfOrigin.name + " bullet");
 		}
 	}
 

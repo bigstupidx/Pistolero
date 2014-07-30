@@ -2,6 +2,12 @@
 using System.Collections;
 
 public class Entity : MonoBehaviour {
+	public CapsuleCollider entityCollider;
+
+	void Start() {
+
+	}
+
 	public Shooter shooter {
 		get {
 			return GetComponentInChildren<Shooter>();

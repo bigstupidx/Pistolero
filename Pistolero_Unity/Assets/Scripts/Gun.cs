@@ -32,7 +32,7 @@ public class Gun : MonoBehaviour {
 
 		Bullet newBullet = (Bullet)Instantiate(bulletPrefab, bulletOrigin.position, transform.rotation);
 		newBullet.rootTransformOfOrigin = transform.root;
-		Debug.Log(newBullet.rootTransformOfOrigin.name);
+
 		Vector3 bulletDirection = Quaternion.Euler(0, 0, Random.Range(-spreadAngle / 2f, spreadAngle / 2f)) * transform.right;
 		float fireSpeedVariation = Random.Range(0, fireForceVariation);
 		newBullet.rigidbody.AddForce(bulletDirection * (fireForce + fireSpeedVariation));

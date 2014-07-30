@@ -11,11 +11,19 @@ public class Shooter : MonoBehaviour {
 	// might be connected and disconnected throughout the game
 	public Gun gun {get {return _gun;}}
 	public Shield shield {get {return _shield;}}
+	public Entity entity {
+		get {
+			if (_entity == null) _entity = GetComponentInParent<Entity>();
+			return _entity;
+		}
+	}
 
 	[SerializeField]
 	private Gun _gun;
 	[SerializeField]
 	private Shield _shield;
+
+	private Entity _entity;
 
 	void Awake () {
 		isReloading = false;
@@ -76,10 +84,12 @@ public class Shooter : MonoBehaviour {
 	public void RaiseShield() {
 		if (isReloading) CancelReload();
 		shield.MoveToRaisedPosition();
+		entity.entityCollider.enabled = false;
 	}
 
 	public void LowerShield() {
 		shield.MoveToLoweredPosition();
+		entity.entityCollider.enabled = true;
 	}
 
 	public void Reload() {

@@ -8,6 +8,8 @@ public class Shield : MonoBehaviour {
 	public Transform transformRaised;
 	public Transform transformLowered;
 
+	public CapsuleCollider shieldCollider;
+
 	private Health health;
 
 	// Use this for initialization
@@ -23,6 +25,8 @@ public class Shield : MonoBehaviour {
 
 	public void MoveToRaisedPosition(float time = 0.1f) {
 		if (isRaised && time != 0) Debug.LogWarning("trying to raise shield while already raised");
+
+		shieldCollider.enabled = true;
 
 		isRaised = true;
 
@@ -42,6 +46,8 @@ public class Shield : MonoBehaviour {
 	public void MoveToLoweredPosition(float time = 0.1f) {
 		if (!isRaised && time != 0) Debug.LogWarning("trying to lower shield while already lowered");
 
+		shieldCollider.enabled = false;
+
 		isRaised = false;
 
 		Go.killAllTweensWithTarget(transform);
@@ -57,7 +63,8 @@ public class Shield : MonoBehaviour {
 		}
 	}
 
-//	void OnTriggerEnter(Collider coll) {
+	void OnTriggerEnter(Collider coll) {
+		Debug.Log("blah");
 //		Bullet bullet = coll.GetComponent<Bullet>();
 //
 //		if (bullet) {
@@ -67,5 +74,5 @@ public class Shield : MonoBehaviour {
 //			// if it's not raised, the bullet shouldn't hit the shield at all
 //			if (isRaised) health.Damage(bullet.damage * damageMultiplier);
 //		}
-//	}
+	}
 }
