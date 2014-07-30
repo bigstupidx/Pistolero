@@ -29,11 +29,11 @@ public class DamageableBody : MonoBehaviour {
 		if (bullet) {
 			// if the shield is raised, the bullets shouldn't hit the body directly at all,
 			// but this will double check that to make sure only the shield handles the damage
-			if (!shield.isRaised) Damage(bullet.damage);
+			if (!shield || !shield.isRaised) Damage(bullet.damage);
 		}
 	}
 
 	public void Damage(float damageAmount) {
-		Debug.Log(damageAmount + " damage!");
+		//Debug.Log(damageAmount + " damage!");
 	}
 }

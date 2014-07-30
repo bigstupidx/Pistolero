@@ -114,6 +114,7 @@
      <Compile Include="Assets\Scripts\DamageableBody.cs" />
      <Compile Include="Assets\Scripts\DebugManager.cs" />
      <Compile Include="Assets\Scripts\Gun.cs" />
+     <Compile Include="Assets\Scripts\Helper.cs" />
      <Compile Include="Assets\Scripts\Pistolero.cs" />
      <Compile Include="Assets\Scripts\Shield.cs" />
      <Compile Include="Assets\Scripts\Shooter.cs" />

@@ -13,10 +13,11 @@ public class Pistolero : MonoBehaviour {
 	void Update () {
 		if (shooter.shield && shooter.gun) {
 			if (Input.GetMouseButtonDown(0)) {
-				if (!shooter.shield.isRaised && shooter.gun.EnoughTimeHasLapsedForNextFire()) shooter.gun.Fire();
+				if (shooter.CanFire()) shooter.Fire();
+				else if (shooter.CanReload()) StartCoroutine(shooter.Reload());
 			}
 			else if (Input.GetMouseButton(0)) {
-				if (shooter.gun.isAutomatic && shooter.gun.EnoughTimeHasLapsedForNextFire()) shooter.gun.Fire();
+				if (shooter.gun.isAutomatic && shooter.CanFire()) shooter.Fire();
 			}
 			else if (Input.GetMouseButtonUp(0)) {
 

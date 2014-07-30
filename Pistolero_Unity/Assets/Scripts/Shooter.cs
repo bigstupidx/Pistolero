@@ -7,6 +7,8 @@ public class Shooter : MonoBehaviour {
 	public Transform shieldTransformLowered;
 	public Transform gunHolder;
 
+	public bool isReloading {get; private set;}
+
 	// might be connected and disconnected throughout the game
 	public Gun gun {get {return _gun;}}
 	public Shield shield {get {return _shield;}}
@@ -21,6 +23,7 @@ public class Shooter : MonoBehaviour {
 
 	void Awake () {
 		damageableBody = GetComponent<DamageableBody>();
+		isReloading = false;
 	}
 
 	public void AddGun(Gun newGun) {
@@ -59,5 +62,36 @@ public class Shooter : MonoBehaviour {
 		else Destroy(shield.gameObject);
 
 		_shield = null;
+	}
+
+	public IEnumerator Reload() {
+		if (isReloading) Debug.LogWarning("trying to reload while already reloading");
+
+		isReloading = true;
+
+		yield return new WaitForSeconds(gun.reloadTime);
+		
+		gun.bulletsLeft = gun.bulletCount;
+		isReloading = false;
+		Debug.Log("reloaded");
+	}
+
+	public void Fire() {
+		gun.FireBullet();
+	}
+
+	public bool CanFire() {
+		bool s = true;
+		if (shield) s = !shield.isRaised;
+
+		bool t = gun.EnoughTimeHasLapsedForNextFire();
+
+		bool r = gun.HasBulletsLeft();
+
+		return s && t && r;
+	}
+
+	public bool CanReload() {
+		return !isReloading && !gun.HasBulletsLeft();
 	}
 }
