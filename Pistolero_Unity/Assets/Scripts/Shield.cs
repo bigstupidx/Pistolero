@@ -9,13 +9,10 @@ public class Shield : MonoBehaviour {
 	public Transform transformLowered;
 
 	public CapsuleCollider shieldCollider;
-
-	private Health health;
-
+	
 	// Use this for initialization
 	void Start () {
 		isRaised = false;
-		health = GetComponentInParent<Health>();
 	}
 	
 	// Update is called once per frame
@@ -64,7 +61,7 @@ public class Shield : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider coll) {
-		Debug.Log("blah");
+
 //		Bullet bullet = coll.GetComponent<Bullet>();
 //
 //		if (bullet) {

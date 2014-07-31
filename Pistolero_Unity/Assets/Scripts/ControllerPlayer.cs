@@ -11,22 +11,22 @@ public class ControllerPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (shooter.shield && shooter.gun) {
-			if (Input.GetMouseButtonDown(0)) {
-				if (shooter.CanFire()) shooter.Fire();
-				else if (shooter.CanReload()) shooter.Reload();
+		if (Input.GetMouseButtonDown(0)) {
+			if (shooter.CanFire()) {
+				if (shooter.gun.isAutomatic) shooter.StartAutoFiring();
+				else shooter.Fire(true);
 			}
-			else if (Input.GetMouseButton(0)) {
-				if (shooter.gun.isAutomatic && shooter.CanFire()) shooter.Fire();
-			}
-			else if (Input.GetMouseButtonUp(0)) {
+			else if (shooter.CanReload()) shooter.Reload();
+		}
+		else if (Input.GetMouseButtonUp(0)) {
+			if (shooter.isAutoFiring) shooter.StopAutoFiring();
+		}
 
-			}
-
-			if (Input.GetKeyDown(KeyCode.S)) {
-				if (shooter.shield.isRaised) shooter.LowerShield();
-				else shooter.RaiseShield();
-			}
+		if (Input.GetKeyDown(KeyCode.S)) {
+			if (!shooter.shield.isRaised) shooter.RaiseShield();
+		}
+		else if (Input.GetKeyUp(KeyCode.S)) {
+			if (shooter.shield.isRaised) shooter.LowerShield();
 		}
 	}
 }

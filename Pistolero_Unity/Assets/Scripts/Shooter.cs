@@ -7,10 +7,12 @@ public class Shooter : MonoBehaviour {
 	public Transform gunHolder;
 
 	public bool isReloading {get; private set;}
+	public bool isAutoFiring {get; private set;}
 
 	// might be connected and disconnected throughout the game
 	public Gun gun {get {return _gun;}}
 	public Shield shield {get {return _shield;}}
+
 	public Entity entity {
 		get {
 			if (_entity == null) _entity = GetComponentInParent<Entity>();
@@ -70,7 +72,7 @@ public class Shooter : MonoBehaviour {
 	IEnumerator ReloadCoroutine() {
 		isReloading = true;
 
-		shield.MoveToLoweredPosition();
+		//if (shield.isRaised) shield.MoveToLoweredPosition();
 
 		while (gun.bulletsLeft < gun.bulletCount) {
 			yield return new WaitForSeconds(gun.reloadTimePerBullet);
@@ -83,6 +85,8 @@ public class Shooter : MonoBehaviour {
 
 	public void RaiseShield() {
 		if (isReloading) CancelReload();
+		if (isAutoFiring) StopAutoFiring();
+
 		shield.MoveToRaisedPosition();
 		entity.entityCollider.enabled = false;
 	}
@@ -104,9 +108,26 @@ public class Shooter : MonoBehaviour {
 		isReloading = false;
 	}
 
-	public void Fire() {
+	public void Fire(bool withScreenShake = false) {
 		if (isReloading) CancelReload();
-		gun.FireBullet();
+		gun.FireBullet(withScreenShake);
+	}
+
+	IEnumerator AutoFire() {
+		while (gun.HasBulletsLeft()) {
+			if (CanFire()) Fire(true);
+			yield return null;
+		}
+	}
+
+	public void StartAutoFiring() {
+		isAutoFiring = true;
+		StartCoroutine("AutoFire");
+	}
+
+	public void StopAutoFiring() {
+		StopCoroutine("AutoFire");
+		isAutoFiring = false;
 	}
 
 	public bool CanFire() {

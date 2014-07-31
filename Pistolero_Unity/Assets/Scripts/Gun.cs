@@ -6,14 +6,15 @@ public class Gun : MonoBehaviour {
 	public Transform bulletOrigin;
 	public bool isAutomatic = false;
 	public int bulletCount = 6;
+	public int bulletsLeft;
 	public float reloadTimePerBullet = 0.1f;
 	public float fireRate = 0.2f;
 	public float fireForce = 100;
 	public float fireForceVariation = 0;
 	public float rotationSpeed = 500;
 	public float spreadAngle = 0;
-
-	public int bulletsLeft;
+	public float shakeIntensity = 1;
+	public float shakeTime = 0.2f;
 
 	private float timeOfLastFire = 0;
 
@@ -27,7 +28,7 @@ public class Gun : MonoBehaviour {
 
 	}
 
-	public void FireBullet() {
+	public void FireBullet(bool withScreenShake = false) {
 		if (!HasBulletsLeft()) Debug.LogWarning("can't fire; out of bullets!");
 
 		Bullet newBullet = (Bullet)Instantiate(bulletPrefab, bulletOrigin.position, transform.rotation);
@@ -39,6 +40,10 @@ public class Gun : MonoBehaviour {
 		newBullet.rigidbody.AddTorque(transform.forward * rotationSpeed);
 		timeOfLastFire = Time.time;
 		bulletsLeft--;
+
+		if (withScreenShake) {
+			CameraHelper.instance.gameCam.GetComponent<ScreenShake>().Shake(shakeIntensity, shakeTime);
+		}
 	}
 
 	public bool HasBulletsLeft() {

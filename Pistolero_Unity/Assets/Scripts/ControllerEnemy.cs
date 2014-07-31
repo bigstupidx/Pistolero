@@ -100,8 +100,6 @@ public class ControllerEnemy : MonoBehaviour {
 			if (countUp >= rand) return a;
 		}
 
-		Debug.LogWarning("didn't actually pick a random choice correctly");
-
 		return AttackAction.NONE;
 	}
 }
