@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
-	public Transform enemySpawn;
 	public GameObject basicEnemyPrefab;
 
 	// Use this for initialization
@@ -19,8 +18,6 @@ public class GameManager : MonoBehaviour {
 	public GameObject SpawnBasicEnemy() {
 		GameObject enemy = (GameObject)Instantiate(basicEnemyPrefab);
 		enemy.GetComponent<EnemyInitializer>().Init();
-		enemy.transform.parent = enemySpawn;
-		enemy.transform.localPosition = Vector3.zero;
 		return enemy;
 	}
 }

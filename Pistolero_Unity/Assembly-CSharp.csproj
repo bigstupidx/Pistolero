@@ -120,6 +120,7 @@
      <Compile Include="Assets\Scripts\DebugManager.cs" />
      <Compile Include="Assets\Scripts\EnemyInitializer.cs" />
      <Compile Include="Assets\Scripts\Entity.cs" />
+     <Compile Include="Assets\Scripts\EntitySpawnPointHelper.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Gun.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
