@@ -55,10 +55,10 @@ public class ControllerEnemy : MonoBehaviour {
 			}
 		}
 		else if (a == AttackAction.LowerShield) {
-			entity.shooter.LowerShield();
+			entity.shooter.TurnOffShield();
 		}
 		else if (a == AttackAction.RaiseShield) {
-			entity.shooter.RaiseShield();
+			entity.shooter.TurnOnShield();
 			yield return new WaitForSeconds(Random.Range(minShieldTime, maxShieldTime));
 		}
 
@@ -71,7 +71,7 @@ public class ControllerEnemy : MonoBehaviour {
 		List<AttackAction> possibleActions = new List<AttackAction>();
 
 		// if the shield is raised, the only option is to lower it
-		if (entity.shooter.shield.isRaised) return AttackAction.LowerShield;
+		if (entity.shooter.shield.isOn) return AttackAction.LowerShield;
 
 		else if (entity.shooter.CanReload()) {
 			possibleActions.Add(AttackAction.Reload);

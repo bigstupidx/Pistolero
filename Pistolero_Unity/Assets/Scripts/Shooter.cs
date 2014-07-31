@@ -2,9 +2,8 @@
 using System.Collections;
 
 public class Shooter : MonoBehaviour {
-	public Transform shieldTransformRaised;
-	public Transform shieldTransformLowered;
 	public Transform gunHolder;
+	public Transform shieldHolder;
 
 	public bool isReloading {get; private set;}
 	public bool isAutoFiring {get; private set;}
@@ -46,9 +45,10 @@ public class Shooter : MonoBehaviour {
 		if (shield) throw new UnityException("can't add shield when shield already exists");
 
 		_shield = newShield;
-		_shield.transformLowered = shieldTransformLowered;
-		_shield.transformRaised = shieldTransformRaised;
-		_shield.MoveToLoweredPosition(0);
+		_shield.transform.parent = shieldHolder.transform;
+		_shield.transform.localPosition = Vector3.zero;
+		_shield.transform.localRotation = Quaternion.identity;
+		_shield.TurnOff(0);
 	}
 	
 	public void RemoveGun() {
@@ -83,17 +83,17 @@ public class Shooter : MonoBehaviour {
 		isReloading = false;
 	}
 
-	public void RaiseShield() {
+	public void TurnOnShield() {
 		if (isReloading) CancelReload();
 		if (isAutoFiring) StopAutoFiring();
 
-		shield.MoveToRaisedPosition(0.1f, (tween) => {
+		shield.TurnOn(0.1f, (tween) => {
 			entity.entityCollider.enabled = false;
 		});
 	}
 
-	public void LowerShield() {
-		shield.MoveToLoweredPosition(0.1f, (tween) => {
+	public void TurnOffShield() {
+		shield.TurnOff(0.1f, (tween) => {
 			entity.entityCollider.enabled = true;
 		});
 	}
@@ -134,7 +134,7 @@ public class Shooter : MonoBehaviour {
 
 	public bool CanFire() {
 		bool s = true;
-		if (shield) s = !shield.isRaised;
+		if (shield) s = !shield.isOn;
 
 		bool t = gun.EnoughTimeHasLapsedForNextFire();
 

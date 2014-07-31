@@ -23,22 +23,22 @@ public class ControllerPlayer : MonoBehaviour {
 	
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.S)) {
-			shooter.RaiseShield();
+			shooter.TurnOnShield();
 		}
 		else if (Input.GetKeyUp(KeyCode.S)) {
-			shooter.LowerShield();
+			shooter.TurnOffShield();
 		}
 	}
 
 	void HandleTouch(TouchSide touchSide, TouchType touchType) {
 		if (touchSide == TouchSide.Left) {
-			if (touchType == TouchType.OnDown) shooter.RaiseShield();
-			else if (touchType == TouchType.OnRelease) shooter.LowerShield();
+			if (touchType == TouchType.OnDown) shooter.TurnOnShield();
+			else if (touchType == TouchType.OnRelease) shooter.TurnOffShield();
 		}
 
 		else if (touchSide == TouchSide.Right) {
 			if (touchType == TouchType.OnDown) {
-				if (!shooter.shield.isRaised) {
+				if (!shooter.shield.isOn) {
 					if (shooter.CanFire()) {
 						if (shooter.gun.isAutomatic) shooter.StartAutoFiring();
 						else shooter.Fire(true);

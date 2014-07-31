@@ -4,16 +4,16 @@ using System;
 
 public class Shield : MonoBehaviour {
 	public float damageMultiplier = 0.3f;
-	public bool isRaised {get; private set;}
-
-	public Transform transformRaised;
-	public Transform transformLowered;
+	public bool isOn {get; private set;}
 
 	public CapsuleCollider shieldCollider;
+
+	private tk2dSprite sprite;
 	
 	// Use this for initialization
-	void Start () {
-		isRaised = false;
+	void Awake () {
+		isOn = false;
+		sprite = GetComponent<tk2dSprite>();
 	}
 	
 	// Update is called once per frame
@@ -21,53 +21,55 @@ public class Shield : MonoBehaviour {
 	
 	}
 
-	public void MoveToRaisedPosition(float time = 0.1f, Action<AbstractGoTween> onComplete = null) {
-		if (isRaised && time != 0) Debug.LogWarning("trying to raise shield while already raised");
+	public void TurnOn(float time = 0.1f, Action<AbstractGoTween> onComplete = null) {
+		if (isOn && time != 0) Debug.LogWarning("trying to raise shield while already raised");
 
-		Go.killAllTweensWithTarget(transform);
-
-		transform.parent = transformRaised;
+		Go.killAllTweensWithTarget(sprite);
 
 		Action<AbstractGoTween> internalOnComplete = (tween) => {
 			shieldCollider.enabled = true;
-			isRaised = true;
+			isOn = true;
 			if (onComplete != null) onComplete(tween);
 		};
-		
+
+		Color newColor = sprite.color;
+
 		if (time == 0) {
-			transform.localPosition = Vector3.zero;
-			transform.localRotation = Quaternion.identity;
+			newColor.a = 1;
+			sprite.color = newColor;
 			internalOnComplete(null);
 		}
 		else {
-			GoTweenConfig config = new GoTweenConfig().localPosition(Vector3.zero).localRotation(Quaternion.identity).onComplete(internalOnComplete);
+			newColor.a = 1;
+			GoTweenConfig config = new GoTweenConfig().colorProp("color", newColor).onComplete(internalOnComplete);
 
-			Go.to(transform, time, config);
+			Go.to(sprite, time, config);
 		}
 	}
 
-	public void MoveToLoweredPosition(float time = 0.1f, Action<AbstractGoTween> onComplete = null) {
-		if (!isRaised && time != 0) Debug.LogWarning("trying to lower shield while already lowered");
+	public void TurnOff(float time = 0.1f, Action<AbstractGoTween> onComplete = null) {
+		if (!isOn && time != 0) Debug.LogWarning("trying to lower shield while already lowered");
 
-		Go.killAllTweensWithTarget(transform);
-
-		transform.parent = transformLowered;
+		Go.killAllTweensWithTarget(sprite);
 
 		Action<AbstractGoTween> internalOnComplete = (tween) => {
 			shieldCollider.enabled = false;
-			isRaised = false;
+			isOn = false;
 			if (onComplete != null) onComplete(tween);
 		};
 
+		Color newColor = sprite.color;
+
 		if (time == 0) {
-			transform.localPosition = Vector3.zero;
-			transform.localRotation = Quaternion.identity;
+			newColor.a = 0;
+			sprite.color = newColor;
 			internalOnComplete(null);
 		}
 		else {
-			GoTweenConfig config = new GoTweenConfig().localPosition(Vector3.zero).localRotation(Quaternion.identity).onComplete(internalOnComplete);
+			newColor.a = 0;
+			GoTweenConfig config = new GoTweenConfig().colorProp("color", newColor).onComplete(internalOnComplete);
 
-			Go.to(transform, time, config);
+			Go.to(sprite, time, config);
 		}
 	}
 

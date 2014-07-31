@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour {
 		Entity entity = coll.transform.root.GetComponentInChildren<Entity>();
 
 		if (entity) {
-			if (entity.shield.isRaised) {
+			if (entity.shield.isOn) {
 				entity.health.Damage(damage * entity.shield.damageMultiplier);
 			}
 			else {
