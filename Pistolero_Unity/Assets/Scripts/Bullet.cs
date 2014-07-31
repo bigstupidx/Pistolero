@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		transform.parent = GameObject.Find("Bullet Holder").transform;
 	}
 	
 	// Update is called once per frame

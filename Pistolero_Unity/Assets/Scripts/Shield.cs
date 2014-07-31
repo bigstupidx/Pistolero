@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Shield : MonoBehaviour {
 	public float damageMultiplier = 0.3f;
@@ -20,43 +21,53 @@ public class Shield : MonoBehaviour {
 	
 	}
 
-	public void MoveToRaisedPosition(float time = 0.1f) {
+	public void MoveToRaisedPosition(float time = 0.1f, Action<AbstractGoTween> onComplete = null) {
 		if (isRaised && time != 0) Debug.LogWarning("trying to raise shield while already raised");
-
-		shieldCollider.enabled = true;
-
-		isRaised = true;
 
 		Go.killAllTweensWithTarget(transform);
 
 		transform.parent = transformRaised;
 
+		Action<AbstractGoTween> internalOnComplete = (tween) => {
+			shieldCollider.enabled = true;
+			isRaised = true;
+			if (onComplete != null) onComplete(tween);
+		};
+		
 		if (time == 0) {
 			transform.localPosition = Vector3.zero;
 			transform.localRotation = Quaternion.identity;
+			internalOnComplete(null);
 		}
 		else {
-			Go.to(transform, time, new GoTweenConfig().localPosition(Vector3.zero).localRotation(Quaternion.identity));
+			GoTweenConfig config = new GoTweenConfig().localPosition(Vector3.zero).localRotation(Quaternion.identity).onComplete(internalOnComplete);
+
+			Go.to(transform, time, config);
 		}
 	}
 
-	public void MoveToLoweredPosition(float time = 0.1f) {
+	public void MoveToLoweredPosition(float time = 0.1f, Action<AbstractGoTween> onComplete = null) {
 		if (!isRaised && time != 0) Debug.LogWarning("trying to lower shield while already lowered");
-
-		shieldCollider.enabled = false;
-
-		isRaised = false;
 
 		Go.killAllTweensWithTarget(transform);
 
 		transform.parent = transformLowered;
 
+		Action<AbstractGoTween> internalOnComplete = (tween) => {
+			shieldCollider.enabled = false;
+			isRaised = false;
+			if (onComplete != null) onComplete(tween);
+		};
+
 		if (time == 0) {
 			transform.localPosition = Vector3.zero;
 			transform.localRotation = Quaternion.identity;
+			internalOnComplete(null);
 		}
 		else {
-			Go.to(transform, time, new GoTweenConfig().localPosition(Vector3.zero).localRotation(Quaternion.identity));
+			GoTweenConfig config = new GoTweenConfig().localPosition(Vector3.zero).localRotation(Quaternion.identity).onComplete(internalOnComplete);
+
+			Go.to(transform, time, config);
 		}
 	}
 

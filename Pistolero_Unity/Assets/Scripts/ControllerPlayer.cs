@@ -23,10 +23,10 @@ public class ControllerPlayer : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.S)) {
-			if (!shooter.shield.isRaised) shooter.RaiseShield();
+			shooter.RaiseShield();
 		}
 		else if (Input.GetKeyUp(KeyCode.S)) {
-			if (shooter.shield.isRaised) shooter.LowerShield();
+			shooter.LowerShield();
 		}
 	}
 }

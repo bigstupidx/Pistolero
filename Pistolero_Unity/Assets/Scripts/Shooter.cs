@@ -87,13 +87,15 @@ public class Shooter : MonoBehaviour {
 		if (isReloading) CancelReload();
 		if (isAutoFiring) StopAutoFiring();
 
-		shield.MoveToRaisedPosition();
-		entity.entityCollider.enabled = false;
+		shield.MoveToRaisedPosition(0.1f, (tween) => {
+			entity.entityCollider.enabled = false;
+		});
 	}
 
 	public void LowerShield() {
-		shield.MoveToLoweredPosition();
-		entity.entityCollider.enabled = true;
+		shield.MoveToLoweredPosition(0.1f, (tween) => {
+			entity.entityCollider.enabled = true;
+		});
 	}
 
 	public void Reload() {
