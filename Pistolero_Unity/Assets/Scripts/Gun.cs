@@ -17,9 +17,11 @@ public class Gun : MonoBehaviour {
 	public float shakeTime = 0.2f;
 
 	private float timeOfLastFire = 0;
+	private float aspectRatio;
 
 	// Use this for initialization
 	void Awake () {
+		aspectRatio = (float)Screen.width / (float)Screen.height;
 		bulletsLeft = bulletCount;
 	}
 	
@@ -36,7 +38,7 @@ public class Gun : MonoBehaviour {
 
 		Vector3 bulletDirection = Quaternion.Euler(0, 0, Random.Range(-spreadAngle / 2f, spreadAngle / 2f)) * transform.right;
 		float fireSpeedVariation = Random.Range(0, fireForceVariation);
-		newBullet.rigidbody.AddForce(bulletDirection * (fireForce + fireSpeedVariation));
+		newBullet.rigidbody.AddForce(bulletDirection * (fireForce + fireSpeedVariation) * aspectRatio);
 		newBullet.rigidbody.AddTorque(transform.forward * rotationSpeed);
 		timeOfLastFire = Time.time;
 		bulletsLeft--;

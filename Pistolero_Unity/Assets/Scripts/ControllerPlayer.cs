@@ -38,11 +38,13 @@ public class ControllerPlayer : MonoBehaviour {
 
 		else if (touchSide == TouchSide.Right) {
 			if (touchType == TouchType.OnDown) {
-				if (shooter.CanFire()) {
-					if (shooter.gun.isAutomatic) shooter.StartAutoFiring();
-					else shooter.Fire(true);
+				if (!shooter.shield.isRaised) {
+					if (shooter.CanFire()) {
+						if (shooter.gun.isAutomatic) shooter.StartAutoFiring();
+						else shooter.Fire(true);
+					}
+					else if (shooter.CanReload()) shooter.Reload();
 				}
-				else if (shooter.CanReload()) shooter.Reload();
 			}
 			else if (touchType == TouchType.OnRelease) {
 				if (shooter.isAutoFiring) shooter.StopAutoFiring();
