@@ -11,6 +11,7 @@ public class ControllerPlayer : MonoBehaviour {
 		entityUIConnection = GetComponent<EntityUIConnection>();
 		entityUIConnection.reloadProgressBar.Hide();
 		shooter = GetComponentInChildren<Shooter>();
+		shooter.shield.TurnOff(0);
 	}
 
 	void OnEnable() {
@@ -66,6 +67,7 @@ public class ControllerPlayer : MonoBehaviour {
 	}
 
 	void HandleReloadStarted() {
+		entityUIConnection.reloadProgressBar.progressBar.Value = 0;
 		entityUIConnection.reloadProgressBar.Show();
 	}
 
