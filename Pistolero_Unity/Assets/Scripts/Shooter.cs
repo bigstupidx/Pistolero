@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Shooter : MonoBehaviour {
 	public Transform gunHolder;
@@ -7,6 +8,11 @@ public class Shooter : MonoBehaviour {
 
 	public bool isReloading {get; private set;}
 	public bool isAutoFiring {get; private set;}
+	public float reloadProgress {get; private set;}
+
+	public Action SignalReloadStarted;
+	public Action SignalReloadFinished;
+	public Action SignalReloadStopped;
 
 	// might be connected and disconnected throughout the game
 	public Gun gun {get {return _gun;}}
@@ -28,6 +34,7 @@ public class Shooter : MonoBehaviour {
 
 	void Awake () {
 		isReloading = false;
+		reloadProgress = 0;
 	}
 
 	public void AddGun(Gun newGun) {
@@ -70,21 +77,26 @@ public class Shooter : MonoBehaviour {
 	}
 
 	IEnumerator ReloadCoroutine() {
+		reloadProgress = 0;
 		isReloading = true;
 
-		//if (shield.isRaised) shield.MoveToLoweredPosition();
+		float timeOfReloadStart = Time.time;
 
-		while (gun.bulletsLeft < gun.bulletCount) {
-			yield return new WaitForSeconds(gun.reloadTimePerBullet);
+		while (reloadProgress < 1) {
+			reloadProgress = (Time.time - timeOfReloadStart) / gun.reloadTime;
 
-			gun.bulletsLeft++;
+			yield return null;
 		}
-		
+
+		gun.Reload();
+
 		isReloading = false;
+
+		if (SignalReloadFinished != null) SignalReloadFinished();
 	}
 
 	public void TurnOnShield() {
-		if (isReloading) CancelReload();
+		if (isReloading) StopReloading();
 		if (isAutoFiring) StopAutoFiring();
 
 		shield.TurnOn(0.1f, (tween) => {
@@ -98,20 +110,22 @@ public class Shooter : MonoBehaviour {
 		});
 	}
 
-	public void Reload() {
+	public void StartReloading() {
 		if (isReloading) Debug.LogWarning("trying to reload while already reloading");
 
 		StartCoroutine("ReloadCoroutine");
+		if (SignalReloadStarted != null) SignalReloadStarted();
 	}
 
-	public void CancelReload() {
+	public void StopReloading() {
 		StopCoroutine("ReloadCoroutine");
-
+		if (SignalReloadStopped != null) SignalReloadStopped();
 		isReloading = false;
+		reloadProgress = 0;
 	}
 
 	public void Fire(bool withScreenShake = false) {
-		if (isReloading) CancelReload();
+		if (isReloading) StopReloading();
 		gun.FireBullet(withScreenShake);
 	}
 

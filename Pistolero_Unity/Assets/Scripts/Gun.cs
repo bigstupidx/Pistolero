@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour {
 	public bool isAutomatic = false;
 	public int bulletCount = 6;
 	public int bulletsLeft;
-	public float reloadTimePerBullet = 0.1f;
+	public float reloadTime = 0.2f;
 	public float fireRate = 0.2f;
 	public float fireForce = 100;
 	public float fireForceVariation = 0;
@@ -50,6 +50,10 @@ public class Gun : MonoBehaviour {
 
 	public bool HasBulletsLeft() {
 		return bulletsLeft > 0;
+	}
+
+	public void Reload() {
+		bulletsLeft = bulletCount;
 	}
 
 	public bool EnoughTimeHasLapsedForNextFire() {

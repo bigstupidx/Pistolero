@@ -28,8 +28,8 @@ public class ControllerEnemy : MonoBehaviour {
 	}
 
 	void Start() {
-		ShooterUIConnection uiConn = GetComponent<ShooterUIConnection>();
-		uiConn.ammoLabel = GameObject.Find("Enemy Ammo Label").GetComponent<tk2dTextMesh>();
+		EntityUIConnection uiConn = GetComponent<EntityUIConnection>();
+		//uiConn.ammoLabel = GameObject.Find("Enemy Ammo Label").GetComponent<tk2dTextMesh>();
 		uiConn.healthLabel = GameObject.Find("Enemy Health Label").GetComponent<tk2dTextMesh>();
 	}
 	
@@ -48,7 +48,7 @@ public class ControllerEnemy : MonoBehaviour {
 			entity.shooter.Fire();
 		}
 		else if (a == AttackAction.Reload) {
-			entity.shooter.Reload();
+			entity.shooter.StartReloading();
 			while (entity.shooter.isReloading) {
 				if (Random.value < cancelReloadChance) break;
 				else yield return null;

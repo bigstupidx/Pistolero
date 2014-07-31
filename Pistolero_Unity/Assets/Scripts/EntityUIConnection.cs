@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShooterUIConnection : MonoBehaviour {
+public class EntityUIConnection : MonoBehaviour {
 	public tk2dTextMesh ammoLabel;
 	public tk2dTextMesh healthLabel;
+	public ReloadProgressBar reloadProgressBar;
 
 	private Gun gun;
 	private Health health;
@@ -17,12 +18,15 @@ public class ShooterUIConnection : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		string t = "";
-		
-		for (int i = 0; i < gun.bulletsLeft; i++) {
-			t += "l ";
+
+		if (gun.bulletsLeft == 0) t = "RELOAD!";
+		else {
+			for (int i = 0; i < gun.bulletsLeft; i++) {
+				t += "l ";
+			}
 		}
 		
-		ammoLabel.text = t;
+		if (ammoLabel) ammoLabel.text = t;
 
 		healthLabel.text = health.hp.ToString();
 	}

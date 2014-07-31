@@ -4,29 +4,41 @@ using System.Collections;
 public class ControllerPlayer : MonoBehaviour {
 	private Shooter shooter;
 	private TouchDispatcher touchDispatcher;
+	private EntityUIConnection entityUIConnection;
 
 	void Awake() {
 		touchDispatcher = GameObject.Find("Touch Dispatcher").GetComponent<TouchDispatcher>();
-	}
-
-	void Start() {
+		entityUIConnection = GetComponent<EntityUIConnection>();
+		entityUIConnection.reloadProgressBar.Hide();
 		shooter = GetComponentInChildren<Shooter>();
 	}
 
 	void OnEnable() {
 		touchDispatcher.SignalTouch += HandleTouch;
+
+		shooter.SignalReloadStarted += HandleReloadStarted;
+		shooter.SignalReloadStopped += HandleReloadStopped;
+		shooter.SignalReloadFinished += HandleReloadFinished;
 	}
 
 	void OnDisable() {
 		touchDispatcher.SignalTouch -= HandleTouch;
+
+		shooter.SignalReloadStarted -= HandleReloadStarted;
+		shooter.SignalReloadStopped -= HandleReloadStopped;
+		shooter.SignalReloadFinished -= HandleReloadFinished;
 	}
-	
+
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.S)) {
 			shooter.TurnOnShield();
 		}
 		else if (Input.GetKeyUp(KeyCode.S)) {
 			shooter.TurnOffShield();
+		}
+
+		if (shooter.isReloading) {
+			entityUIConnection.reloadProgressBar.progressBar.Value = shooter.reloadProgress;
 		}
 	}
 
@@ -43,13 +55,26 @@ public class ControllerPlayer : MonoBehaviour {
 						if (shooter.gun.isAutomatic) shooter.StartAutoFiring();
 						else shooter.Fire(true);
 					}
-					else if (shooter.CanReload()) shooter.Reload();
+					else if (shooter.CanReload()) shooter.StartReloading();
 				}
 			}
 			else if (touchType == TouchType.OnRelease) {
 				if (shooter.isAutoFiring) shooter.StopAutoFiring();
+				if (shooter.isReloading) shooter.StopReloading();
 			}
 		}
+	}
+
+	void HandleReloadStarted() {
+		entityUIConnection.reloadProgressBar.Show();
+	}
+
+	void HandleReloadFinished() {
+		entityUIConnection.reloadProgressBar.Hide();
+	}
+
+	void HandleReloadStopped() {
+		entityUIConnection.reloadProgressBar.Hide();
 	}
 
 	void HandleRightTouch(TouchPhase phase) {
