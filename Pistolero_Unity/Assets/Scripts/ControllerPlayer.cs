@@ -3,30 +3,58 @@ using System.Collections;
 
 public class ControllerPlayer : MonoBehaviour {
 	private Shooter shooter;
-	
-	// Use this for initialization
-	void Start () {
+	private TouchDispatcher touchDispatcher;
+
+	void Awake() {
+		touchDispatcher = GameObject.Find("Touch Dispatcher").GetComponent<TouchDispatcher>();
+	}
+
+	void Start() {
 		shooter = GetComponentInChildren<Shooter>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetMouseButtonDown(0)) {
-			if (shooter.CanFire()) {
-				if (shooter.gun.isAutomatic) shooter.StartAutoFiring();
-				else shooter.Fire(true);
-			}
-			else if (shooter.CanReload()) shooter.Reload();
-		}
-		else if (Input.GetMouseButtonUp(0)) {
-			if (shooter.isAutoFiring) shooter.StopAutoFiring();
-		}
 
+	void OnEnable() {
+		touchDispatcher.SignalTouch += HandleTouch;
+	}
+
+	void OnDisable() {
+		touchDispatcher.SignalTouch -= HandleTouch;
+	}
+	
+	void Update() {
 		if (Input.GetKeyDown(KeyCode.S)) {
 			shooter.RaiseShield();
 		}
 		else if (Input.GetKeyUp(KeyCode.S)) {
 			shooter.LowerShield();
 		}
+	}
+
+	void HandleTouch(TouchSide touchSide, TouchType touchType) {
+		if (touchSide == TouchSide.Left) {
+			if (touchType == TouchType.OnDown) shooter.RaiseShield();
+			else if (touchType == TouchType.OnRelease) shooter.LowerShield();
+		}
+
+		else if (touchSide == TouchSide.Right) {
+			if (touchType == TouchType.OnDown) {
+				if (shooter.CanFire()) {
+					if (shooter.gun.isAutomatic) shooter.StartAutoFiring();
+					else shooter.Fire(true);
+				}
+				else if (shooter.CanReload()) shooter.Reload();
+			}
+			else if (touchType == TouchType.OnRelease) {
+				if (shooter.isAutoFiring) shooter.StopAutoFiring();
+			}
+		}
+	}
+
+	void HandleRightTouch(TouchPhase phase) {
+
+	}
+
+	void HandleLeftTouch(TouchPhase phase) {
+
 	}
 }

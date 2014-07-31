@@ -127,6 +127,9 @@
      <Compile Include="Assets\Scripts\Shield.cs" />
      <Compile Include="Assets\Scripts\Shooter.cs" />
      <Compile Include="Assets\Scripts\ShooterUIConnection.cs" />
+     <Compile Include="Assets\Scripts\TouchDispatcher.cs" />
+     <Compile Include="Assets\Scripts\TouchZone.cs" />
+     <Compile Include="Assets\Scripts\TouchZoneInitializer.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCamera.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCameraAnchor.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCameraUtil.cs" />

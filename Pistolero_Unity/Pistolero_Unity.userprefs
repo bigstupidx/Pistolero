@@ -1,13 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Gun.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TouchSide.cs">
     <Files>
-      <File FileName="Assets/Scripts/ControllerPlayer.cs" Line="16" Column="45" />
-      <File FileName="Assets/Scripts/Shooter.cs" Line="107" Column="47" />
-      <File FileName="Assets/Scripts/Shield.cs" Line="16" Column="1" />
+      <File FileName="Assets/Scripts/Shooter.cs" Line="95" Column="29" />
+      <File FileName="Assets/Scripts/ControllerPlayer.cs" Line="9" Column="71" />
+      <File FileName="Assets/Scripts/Shield.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Health.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Gun.cs" Line="45" Column="4" />
-      <File FileName="Assets/Editor/DebugManagerEditor.cs" Line="36" Column="1" />
+      <File FileName="Assets/Scripts/Gun.cs" Line="1" Column="1" />
+      <File FileName="Assets/Editor/DebugManagerEditor.cs" Line="1" Column="1" />
       <File FileName="Assets/TK2DROOT/tk2d/Editor/Camera/tk2dCameraEditor.cs" Line="1" Column="1" />
       <File FileName="Assets/TK2DROOT/tk2d/Code/Camera/tk2dCamera.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/DebugManager.cs" Line="1" Column="1" />
@@ -15,8 +15,12 @@
       <File FileName="Assets/Scripts/DeathPlayer.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Death.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/DeathEnemy.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ControllerEnemy.cs" Line="50" Column="39" />
-      <File FileName="Assets/Scripts/EnemyInitializer.cs" Line="10" Column="3" />
+      <File FileName="Assets/Scripts/ControllerEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EnemyInitializer.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ScreenShake.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TouchZoneInitializer.cs" Line="30" Column="11" />
+      <File FileName="Assets/Scripts/TouchDispatcher.cs" Line="39" Column="1" />
+      <File FileName="Assets/Scripts/TouchSide.cs" Line="55" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
